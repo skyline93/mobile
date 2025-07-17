@@ -1,4 +1,3 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -17,7 +16,10 @@ import 'package:mobile/features/auth/presentation/pages/login.dart' as _i1;
 /// [_i1.LoginScreen]
 class LoginScreen extends _i3.PageRouteInfo<void> {
   const LoginScreen({List<_i3.PageRouteInfo>? children})
-    : super(LoginScreen.name, initialChildren: children);
+      : super(
+          LoginScreen.name,
+          initialChildren: children,
+        );
 
   static const String name = 'LoginScreen';
 
@@ -33,7 +35,10 @@ class LoginScreen extends _i3.PageRouteInfo<void> {
 /// [_i2.Splash]
 class Splash extends _i3.PageRouteInfo<void> {
   const Splash({List<_i3.PageRouteInfo>? children})
-    : super(Splash.name, initialChildren: children);
+      : super(
+          Splash.name,
+          initialChildren: children,
+        );
 
   static const String name = 'Splash';
 
