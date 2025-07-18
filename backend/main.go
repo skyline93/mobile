@@ -5,7 +5,9 @@ import (
 	"gbox/handlers" // Use your module name here
 	"log"
 	"os"
+	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,6 +29,21 @@ func main() {
 
 	// Initialize Gin router
 	r := gin.Default()
+
+	corsConfig := cors.Config{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"},
+		AllowHeaders: []string{
+			"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With",
+			// 添加分片上传需要的自定义请求头
+			"X-File-Name", "X-File-Path", "X-File-Hash", "X-File-Size", "X-Chunk-Size",
+			"X-File-SHA256", "X-Chunk-Hash", "X-Album-ID",
+		},
+		ExposeHeaders:    []string{"Content-Length", "Content-Type"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}
+	r.Use(cors.New(corsConfig))
 
 	// Serve static files (transcoded videos and thumbnails)
 	// This makes the content in the MediaPath accessible via the /media URL path.
