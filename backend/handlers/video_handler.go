@@ -82,14 +82,11 @@ func (h *VideoHandler) GetVideos(c *gin.Context) {
 	}
 
 	var response []VideoResponse = make([]VideoResponse, 0, len(videos))
-	// IMPORTANT: Replace with your server's public IP or domain in production.
-	// For local development, use your machine's local network IP.
-	baseURL := "http://10.0.2.2:8080"
 	for _, v := range videos {
 		response = append(response, VideoResponse{
 			UUID:         v.UUID,
 			Title:        v.Title,
-			ThumbnailURL: baseURL + "/media/" + v.UUID + "/thumbnail.jpg",
+			ThumbnailURL: "/media/" + v.UUID + "/thumbnail.jpg",
 		})
 	}
 	SuccessResp(c, response)
@@ -113,13 +110,11 @@ func (h *VideoHandler) GetVideoDetail(c *gin.Context) {
 		return
 	}
 
-	// IMPORTANT: Replace with your server's public IP or domain in production.
-	baseURL := "http://10.0.2.2:8080"
 	response := gin.H{
 		"uuid":    video.UUID,
 		"title":   video.Title,
 		"status":  string(video.Status),
-		"hls_url": baseURL + "/media/" + video.UUID + "/playlist.m3u8",
+		"hls_url": "/media/" + video.UUID + "/playlist.m3u8",
 	}
 	c.JSON(http.StatusOK, response)
 }
